@@ -8,7 +8,6 @@ variable instance_type {}
 variable subnet_id {}
 variable key_name {}
 variable ec2_pem {}
-variable instance_count {}
 variable list_example {
     type = "list"
 }
