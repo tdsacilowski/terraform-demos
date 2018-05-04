@@ -42,7 +42,7 @@ resource "aws_instance" "demo" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${file(var.ec2_pem)}"
+      private_key = "${var.ec2_pem}"
     }
 
     source      = "../../ansible"
@@ -53,7 +53,7 @@ resource "aws_instance" "demo" {
     connection {
       type        = "ssh"
       user        = "ubuntu"
-      private_key = "${file(var.ec2_pem)}"
+      private_key = "${var.ec2_pem}"
     }
 
     inline = [
