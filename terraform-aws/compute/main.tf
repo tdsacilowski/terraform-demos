@@ -26,6 +26,7 @@ data "aws_security_group" "demo" {
 }
 
 resource "aws_instance" "demo" {
+  count = "${length(var.list_example)}"
   ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "${var.instance_type}"
   subnet_id                   = "${var.subnet_id}"
@@ -34,7 +35,7 @@ resource "aws_instance" "demo" {
   associate_public_ip_address = true
 
   tags {
-    Name     = "${var.environment_name}-instnace"
+    Name     = "${var.environment_name}-instnace-${element(var.list_example, count.index)}"
   }
 
   provisioner "file" {
@@ -46,6 +47,18 @@ resource "aws_instance" "demo" {
 
     source      = "../../ansible"
     destination = "/home/ubuntu"
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      type        = "ssh"
+      user        = "ubuntu"
+      private_key = "${file(var.ec2_pem)}"
+    }
+
+    inline = [
+      "echo 'test' > /home/ubuntu/test.txt"
+    ]
   }
 
   user_data = "${file("../../scripts/init.sh")}"
