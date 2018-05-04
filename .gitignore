@@ -1,0 +1,20 @@
+# Compiled files
+*.tfstate
+*.tfstate.*
+
+# Module directory in any sub-folder
+**/.terraform
+
+# State file in any sub-folder
+**/terraform.tfstate
+**/terraform.tfstate.backup
+*.tfstate.lock.info
+
+# Terraform Variables
+*.tfvars
+
+# SSH Keys
+*.pem
+
+*.DS_Store
+*.vagrant
