@@ -29,7 +29,7 @@ resource "aws_instance" "demo" {
   count = "${length(var.list_example)}"
   ami                         = "${data.aws_ami.ubuntu.id}"
   instance_type               = "${var.instance_type}"
-  subnet_id                   = "${var.subnet_id}"
+  #subnet_id                   = "${var.subnet_id}"
   key_name                    = "${var.key_name}"
   vpc_security_group_ids      = ["${data.aws_security_group.demo.id}"]
   associate_public_ip_address = true
