@@ -4,7 +4,7 @@ resource "aws_security_group" "tf_demo" {
   vpc_id      = "${aws_vpc.tf_demo.id}"
 
   tags {
-    Name = "${var.environment_name}-instnace-${count.index}"
+    Name = "${var.environment_name}"
   }
 }
 

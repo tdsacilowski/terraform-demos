@@ -8,7 +8,7 @@ resource "aws_instance" "tf_demo" {
   associate_public_ip_address = true
 
   tags {
-    Name = "${var.environment_name}-instnace-${count.index}"
+    Name = "${var.environment_name}"
   }
 
   provisioner "file" {
