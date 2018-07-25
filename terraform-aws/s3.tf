@@ -1,8 +1,8 @@
 resource "aws_s3_bucket" "tf_demo" {
   bucket = "${var.environment_name}-bucket"
-  acl    = "public-read"
+  #acl    = "public-read"
 
-  # acl    = "private"
+  acl    = "private"
 
   # server_side_encryption_configuration {
   #   rule {
