@@ -5,7 +5,7 @@ resource "azurerm_virtual_network" "tf_demo" {
   resource_group_name = "${azurerm_resource_group.tf_demo.name}"
 
   tags {
-    Name = "${var.environment_name}"
+    environment = "${var.environment_name}"
   }
 }
 
