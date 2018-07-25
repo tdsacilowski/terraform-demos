@@ -2,7 +2,7 @@ resource "aws_vpc" "tf_demo" {
   cidr_block = "10.0.0.0/16"
 
   tags {
-    Name = "${var.environment_name}-vpc"
+    Name = "${var.environment_name}"
   }
 }
 
@@ -12,7 +12,7 @@ resource "aws_subnet" "tf_demo" {
   map_public_ip_on_launch = true
 
   tags {
-    Name = "${var.environment_name}-subnet"
+    Name = "${var.environment_name}"
   }
 }
 
@@ -20,7 +20,7 @@ resource "aws_internet_gateway" "tf_demo" {
   vpc_id = "${aws_vpc.tf_demo.id}"
 
   tags {
-    Name = "${var.environment_name}-subnet"
+    Name = "${var.environment_name}"
   }
 }
 
@@ -33,7 +33,7 @@ resource "aws_route_table" "tf_demo" {
   }
 
   tags {
-    Name = "${var.environment_name}-subnet"
+    Name = "${var.environment_name}"
   }
 }
 
