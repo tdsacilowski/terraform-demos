@@ -1,4 +1,4 @@
-resource "aws_s3_bucket" "mybucket" {
+resource "aws_s3_bucket" "tf_demo" {
   bucket = "${var.environment_name}-bucket"
 
   # server_side_encryption_configuration {

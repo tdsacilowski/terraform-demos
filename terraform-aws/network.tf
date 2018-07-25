@@ -37,7 +37,7 @@ resource "aws_route_table" "tf_demo" {
   }
 }
 
-resource "aws_route_table_association" "public" {
+resource "aws_route_table_association" "tf_demo" {
   subnet_id      = "${aws_subnet.tf_demo.id}"
   route_table_id = "${aws_route_table.tf_demo.id}"
 }
