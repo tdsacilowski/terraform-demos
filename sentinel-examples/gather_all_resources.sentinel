@@ -1,0 +1,15 @@
+import "tfplan"
+import "strings"
+
+# Get all resources from all modules
+get_all_resources = func() {
+  for tfplan.module_paths as path {
+    print(tfplan.module(path).resources) else []
+  }
+  
+  return true
+}
+  
+main = rule {
+  get_all_resources()
+}
