@@ -7,14 +7,6 @@ resource "aws_instance" "instance_demo" {
   vpc_security_group_ids      = ["${aws_security_group.sg_demo.id}"]
   associate_public_ip_address = true
 
-  ebs_block_device {
-    device_name = "/dev/sdb"
-    volume_size = 5
-    volume_type = "gp2"
-    delete_on_termination = true
-    encrypted = false
-  }
-
   tags {
     Name = "${var.environment_name}"
   }
