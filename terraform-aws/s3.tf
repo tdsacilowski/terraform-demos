@@ -1,6 +1,6 @@
 resource "aws_s3_bucket" "demo_s3_bucket" {
   bucket = "${var.environment_name}-bucket"
-  acl    = "public-read"
+  #acl    = "public-read"
 
   # acl    = "private"
   # server_side_encryption_configuration {
