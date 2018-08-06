@@ -6,14 +6,6 @@ resource "aws_instance" "tf_demo" {
   key_name                    = "${var.aws_key_name}"
   vpc_security_group_ids      = ["${aws_security_group.tf_demo.id}"]
   associate_public_ip_address = true
-  
-  ebs_block_device {
-    device_name = "/dev/sdb"
-    volume_size = 5
-    volume_type = "gp2"
-    delete_on_termination = true
-    encrypted = false
-  }
 
   tags {
     Name = "${var.environment_name}"
