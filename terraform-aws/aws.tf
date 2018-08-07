@@ -10,10 +10,6 @@ provider "aws" {
 //--------------------------------------------------------------------
 // Data Sources
 
-data "aws_route_table" "selected" {
-  subnet_id = "subnet-0be41057"
-}
-
 data "aws_ami" "ubuntu" {
   most_recent = true
 
