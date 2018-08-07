@@ -9,6 +9,7 @@ resource "aws_instance" "instance_demo" {
 
   tags {
     Name = "${var.environment_name}"
+    Owner = "teddy@hashicorp.com"
   }
 
   provisioner "file" {
