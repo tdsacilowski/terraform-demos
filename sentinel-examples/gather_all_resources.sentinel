@@ -1,15 +1,28 @@
 import "tfplan"
+import "tfconfig"
 import "strings"
 
-# Get all resources from all modules
-get_all_resources = func() {
+# Get all plan resources from all modules
+get_all_plan_resources = func() {
+  print("All PLAN resources")
   for tfplan.module_paths as path {
     print(tfplan.module(path).resources) else []
   }
   
   return true
 }
+
+# Get all config resources from all modules
+get_all_config_resources = func() {
+  print("All CONFIG resources")
+  for tfconfig.module_paths as path {
+    print(tfconfig.module(path).resources) else []
+  }
+  
+  return true
+}
   
 main = rule {
-  get_all_resources()
+  get_all_plan_resources() and
+  get_all_config_resources()
 }

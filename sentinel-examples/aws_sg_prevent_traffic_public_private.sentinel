@@ -1,0 +1,60 @@
+#######
+# WIP #
+#######
+
+
+import "tfplan"
+import "strings"
+
+# All instances/VMs must have the following tags
+private_cidrs = [
+    "10.0.1.0/24",
+    "10.0.2.0/24"
+]
+
+public_cidrs = [
+    "10.0.101.0/24",
+    "10.0.102.0/24"
+]
+  
+# Get all AWS security groups from all modules
+get_aws_security_groups = func() {
+  aws_security_groups = []
+  for tfplan.module_paths as path {
+    aws_security_groups += values(tfplan.module(path).resources.aws_security_group) else []
+  }
+  # for debugging
+  # print(aws_security_groups)
+  
+  return aws_security_groups
+}
+
+aws_security_groups = get_aws_security_groups()
+
+# Check that all AWS instances have required tags
+all_aws_instances_have_required_tags = rule {
+  all aws_instances as _, instances {
+    all instances as _, r {
+      all required_tags as tag_key {
+        r.applied.tags contains tag_key
+      }
+    }
+  }
+}
+  
+main = rule {
+  all_aws_instances_have_required_tags
+}
+
+
+
+check_ingress_inline = rule { 
+  all tfplan.resources.aws_security_group as _, instances { 
+    all instances as _, sg { 
+       all strings.split(sg.applied.ingress, " ") as ingress { 
+        (ingress not contains "cidr_blocks") or 
+        (ingress contains "cidr_blocks" and ingress.cidr_blocks not contains "0.0.0.0/0") 
+      }
+    }
+  }
+}
