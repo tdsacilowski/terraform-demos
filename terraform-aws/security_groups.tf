@@ -5,7 +5,7 @@ resource "aws_security_group" "sg_demo" {
 
   tags {
     Name = "${var.environment_name}"
-    NetworkLocation = "private"
+    NetworkLocation = "public"
   }
 }
 
